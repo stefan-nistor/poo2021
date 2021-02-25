@@ -3,4 +3,4 @@ project(lab1)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(lab1 main.cpp Masina.cpp Masina.h NumberList.cpp NumberList.h)
+add_executable(lab1 main.cpp Masina.cpp Masina.h NumberList.cpp NumberList.h Student.cpp Student.h)
