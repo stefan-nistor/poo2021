@@ -1,49 +1,17 @@
 #include  <iostream>
-#include <cstring>
-#include "Masina.h"
-#include "NumberList.h"
-#include "Student.h"
+#include "Math.h"
 
-int cmpName(Student a, Student b)
-{
-    int i = 0;
-    char* a_name = a.getName();
-    char* b_name = b.getName();
-    while (a_name[i] && b_name[i])
-    {
-        if(a_name[i] > b_name[i]) return -1;
-        if(a_name[i] < b_name[i]) return 1;
-        i++;
-    }
+int main() {
 
-    return 0;
-}
+    const char *a {"ana are memre"};
+    const char *b {" si pere"};
 
-int cmpAverage(Student a, Student b){
-    if(a.averageGrade() > b.averageGrade()) return 1;
-    if(a.averageGrade() < b.averageGrade()) return -1;
-    return 0;
-}
+    char * concat   = Math::Add(a, b);
+    int sum         = Math::Add(4, 1, 2, 3, 4);
 
-int cmpMath(Student a, Student b){
-    if(a.getMathGrade() > b.getMathGrade()) return 1;
-    if(a.getMathGrade() < b.getMathGrade()) return -1;
-    return 0;
-}
+    std::cout << "1 + 2 + 3 + 4 =  " << sum << '\n';
+    std::cout << concat;
 
-int cmpEnglish (Student a, Student b){
-    if (a.getEnglishGrade() > b.getEnglishGrade())  return 1;
-    if (a.getEnglishGrade() < b.getEnglishGrade())  return -1;
-    return 0;
-}
-
-int cmpHistory (Student a, Student b){
-    if(a.getHistoryGrade() > b.getHistoryGrade())   return 1;
-    if(a.getHistoryGrade() < b.getHistoryGrade())   return -1;
-    return 0;
-}
-
-int main()
-{
+    free(concat);
     return 0;
 }
