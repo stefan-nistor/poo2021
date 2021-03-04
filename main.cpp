@@ -1,17 +1,14 @@
 #include  <iostream>
-#include "Math.h"
-
+#include "Canvas.h"
+Canvas c(32,32);
 int main() {
+    c.DrawCircle(16,16,10,'#');
+    c.FillCircle(16,16,10,'$');
+    c.Print();
+    c.Clear();
+    c.DrawRect(10,10, 28, 28, 'a');
+    c.FillRect(10,10,28,28, 'b');
+    c.Print();
 
-    const char *a {"ana are memre"};
-    const char *b {" si pere"};
-
-    char * concat   = Math::Add(a, b);
-    int sum         = Math::Add(4, 1, 2, 3, 4);
-
-    std::cout << "1 + 2 + 3 + 4 =  " << sum << '\n';
-    std::cout << concat;
-
-    free(concat);
     return 0;
 }
