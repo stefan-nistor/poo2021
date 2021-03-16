@@ -94,7 +94,6 @@ Sort::Sort (int count, ...){
 
 }
 
-
 Sort::Sort(char const * str){
 
     char * tmp = new char [strlen(str) + 1];
