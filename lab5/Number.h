@@ -8,14 +8,19 @@
 #include <cstring>
 #include <stdexcept>
 class Number {
-public:
+private:
     int number = 0;
     int base = 0;
     char *digits = {nullptr};
 
+    void convertToDecimal();
+
 public:
-    Number                      (const char * value, int base);
-    Number                      (Number const &obj) ;    ///copy ctor
+
+    Number                      (const char * value, int base = 10);
+    Number                      (int  value, int base = 10);
+
+    Number                      (Number const &obj) ;     ///copy ctor
     Number                      (Number &&obj) noexcept;  ///move ctor
 
     ~Number                     () {delete [] digits;}
@@ -32,9 +37,14 @@ public:
     constexpr inline char& operator[] (int index) const  { return this->digits[index];}
 
     Number& operator = (const Number& obj);
+    Number& operator = (const int value);
+    Number& operator = (const char* value);
+
+    Number& operator += (const Number& obj);
 
     Number& operator --();    ///Prefix
-    Number operator --(int); ///Postfix
+    Number  operator --(int); ///Postfix
+
 
     GEN_COMP_OPERATOR (>)
     GEN_COMP_OPERATOR (<)
