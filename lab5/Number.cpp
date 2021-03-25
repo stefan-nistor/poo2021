@@ -110,8 +110,6 @@ Number& Number::operator= (const Number &obj) {
     return *this;
 }
 
-
-
 void Number::convertToDecimal() {
     Number newNumber = Number(this->digits, this->base);
     this->number = newNumber.number;
