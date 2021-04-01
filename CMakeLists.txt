@@ -13,4 +13,4 @@ add_executable(lab1 main.cpp
 #        lab6/Circuit.h lab6/Circuit.cpp lab6/Car.h lab6/Dacia.cpp lab6/Dacia.h lab6/Mazda.h lab6/Mazda.cpp lab6/Ford.h lab6/Ford.cpp
 #        lab6/Mercedes.h lab6/Mercedes.cpp lab6/Toyota.h lab6/Toyota.cpp lab6/Weather.h
 
-        lab7/Vector.cpp lab7/Vector.hpp)
+        lab7/Vector.cpp lab7/Vector.hpp lab7/Stack.cpp lab7/Stack.h)
