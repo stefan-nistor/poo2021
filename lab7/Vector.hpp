@@ -14,6 +14,15 @@ typedef uint64 Size;
 #include <exception>
 #include <iostream>
 
+float operator"" _Kelvin(const char *temperature){
+    return float(strtod(temperature, nullptr)) - 273.0f;
+}
+
+float operator"" _Fahrenheit (const char* temperature){
+    auto value = float(strtod(temperature, nullptr));
+    return (value - 32) / 1.8f;
+}
+
 template <class T>
 class Vector{
 private:
