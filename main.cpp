@@ -1,5 +1,4 @@
 #include  <iostream>
-#include <cstring>
 
 float operator"" _Kelvin(const char *temperature){
     return float(strtod(temperature, nullptr)) - 273.0f;
@@ -12,11 +11,9 @@ float operator"" _Fahrenheit (const char* temperature){
 }
 
 int main()
-
 {
     float a = 300_Kelvin;
     float b = 120_Fahrenheit;
     std::cout << a << ' ' << b;
     return 0;
-
 }
