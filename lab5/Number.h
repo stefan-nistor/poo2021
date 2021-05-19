@@ -13,37 +13,39 @@ private:
     int base = 0;
     char *digits = {nullptr};
 
-    void convertToDecimal();
+    void convertToDecimal() noexcept;
 
 public:
 
-    Number                      (const char * value, int base = 10);
-    Number                      (int  value, int base = 10);
+    explicit Number                      (const char * value, int base = 10) noexcept(false);
+    explicit Number                      (int  value, int base = 10) noexcept;
 
-    Number                      (Number const &obj) ;     ///copy ctor
+    Number                      (Number const &obj) noexcept;     ///copy ctor
     Number                      (Number &&obj) noexcept;  ///move ctor
 
     ~Number                     () {delete [] digits;}
 
-    void switchBase             (int new_base);
-    inline void print () const {std::cout << digits << '\n';}
+    void switchBase             (int new_base) noexcept;
 
-    inline int getDigitsCount   () const {return strlen(digits);}
-    constexpr inline int getBase() const {return this -> base;}
+    inline void print () const noexcept {std::cout << digits << '\n';}
 
-    friend Number operator+     (const Number& a, const Number& b);
-    friend Number operator-     (const Number& a, const Number& b);
+    inline int getDigitsCount   () const noexcept {return strlen(digits);}
+    constexpr inline int getBase() const noexcept {return this -> base;}
 
-    constexpr inline char& operator[] (int index) const  { return this->digits[index];}
+    /// being friend methods, we do not have access to "this"
+    friend Number operator+     (const Number& a, const Number& b) noexcept;
+    friend Number operator-     (const Number& a, const Number& b) noexcept;
 
-    Number& operator = (const Number& obj);
-    Number& operator = (const int value);
-    Number& operator = (const char* value);
+    constexpr inline char& operator[] (int index) const noexcept(false) { return this->digits[index];}
 
-    Number& operator += (const Number& obj);
+    Number& operator = (const Number& obj) noexcept;
+    Number& operator = (const int value)   noexcept;
+    Number& operator = (const char* value) noexcept;
 
-    Number& operator --();    ///Prefix
-    Number  operator --(int); ///Postfix
+    Number& operator += (const Number& obj) noexcept;
+
+    Number& operator --() noexcept;    ///Prefix
+    Number  operator --(int) noexcept; ///Postfix
 
 
     GEN_COMP_OPERATOR (>)
