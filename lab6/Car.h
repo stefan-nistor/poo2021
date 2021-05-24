@@ -8,11 +8,11 @@
 
 class Car{
 public:
-    virtual auto fuelCapacity ()            const -> float = 0;
-    virtual auto fuelConsumption()          const -> float = 0;
-    virtual auto averageSpeed ( Weather )   const -> float = 0;
-    virtual auto range()                    const -> float = 0;
-    virtual auto getName()                  const -> char* = 0;
+    [[nodiscard]] virtual auto fuelCapacity ()            const -> float = 0;
+    [[nodiscard]] virtual auto fuelConsumption()          const -> float = 0;
+    [[nodiscard]] virtual auto averageSpeed ( Weather )   const -> float = 0;
+    [[nodiscard]] virtual auto range()                    const -> float = 0;
+    [[nodiscard]] virtual auto getName()                  const -> const char* = 0;
 
 };
 #endif //LAB1_CAR_H

@@ -23,7 +23,7 @@ public:
     struct car {
         const char * name;
         float time ;
-    } carsOnRace [10];
+    } carsOnRace [10] = {};
 
 
 public:
@@ -37,6 +37,5 @@ public:
     void showFinalRanks()       const noexcept;
     void showWhoDidNotFinish()  const noexcept;
 };
-
 
 #endif //LAB1_CIRCUIT_H

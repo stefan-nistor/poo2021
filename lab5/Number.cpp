@@ -42,6 +42,7 @@ Number::Number(const char *value, int base) noexcept(false){
         }
         this->number += digitValue(value[i]) * power;
         power *= base;
+
     }
 }
 /// Number ctor from a value and a base
@@ -70,7 +71,6 @@ Number::Number(Number &&other)  noexcept {
     this->digits = temp;
 }
 
-
 void Number::switchBase(int new_base) noexcept{
     base = new_base;
     digits = fromDec(number, base);
@@ -98,7 +98,7 @@ Number &Number::operator--() noexcept{
 
 /// Postfix operator-- -> remove last digit ( least significant)
 /// 'int' param does absolutely nothing. Just marks operator as postfix
-Number Number::operator--(int) noexcept{
+Number& Number::operator--(int) noexcept{
     char * temp = digits;
     digits[getDigitsCount() - 1] = '\0';
 
@@ -110,10 +110,12 @@ Number Number::operator--(int) noexcept{
 Number& Number::operator= (const Number &obj) noexcept{
     if( this == &obj ) return *this;
 
-    delete [] digits;
     number = obj.number;
     base = obj.base;
+
+    delete [] digits;
     digits = new char [getDigitsCount()];
+
     return *this;
 }
 

@@ -1,7 +1,3 @@
-//
-// Created by rosawan on 31/03/2021.
-//
-
 #ifndef LAB1_VECTOR_HPP
 #define LAB1_VECTOR_HPP
 
@@ -13,15 +9,6 @@ typedef uint64 Size;
 #include <algorithm>
 #include <exception>
 #include <iostream>
-
-float operator"" _Kelvin(const char *temperature){
-    return float(strtod(temperature, nullptr)) - 273.0f;
-}
-
-float operator"" _Fahrenheit (const char* temperature){
-    auto value = float(strtod(temperature, nullptr));
-    return (value - 32) / 1.8f;
-}
 
 template <class T>
 class Vector{
@@ -51,7 +38,7 @@ public:
     constexpr auto pop  () const noexcept -> Value { return this->_pData[_size];}
 
     auto remove         ( Index ) noexcept(false) -> void;
-   // auto insert         ( ValueConstReference, Index ) noexcept(false) -> void;
+    //auto insert         ( ValueConstReference, Index ) noexcept(false) -> void;
     auto insert         ( Value, Index ) noexcept(false) -> void;
 
     auto get            ( Index ) const noexcept (false) -> ValueConstReference;
@@ -61,7 +48,7 @@ public:
     constexpr auto size  () const noexcept -> uint64 { return this->_size; }
     constexpr auto print () const noexcept -> void;
 
-    auto sort           (bool (* sortFunc) (ValueConstReference, ValueConstReference) noexcept) noexcept -> void;
+    //auto sort           (bool (* sortFunc) (ValueConstReference, ValueConstReference) noexcept) noexcept -> void;
 
     auto firstIndexOf   ( ValueConstReference obj, auto(* callbackFunction) (ValueConstReference, ValueConstReference) noexcept -> bool = nullptr) const noexcept -> Index{
 
@@ -191,13 +178,5 @@ auto Vector<T>::set(ValueConstReference value, Index index) noexcept(false) -> V
     return *this->_pData[index] = value;
 }
 
-//TODO: implement sort function
-template<class T>
-auto Vector<T>::sort(bool (*sortFunc)(ValueConstReference, ValueConstReference) noexcept) noexcept -> void {
-    if (sortFunc == nullptr) {
-        return;
-    }
-
-}
 
 #endif //LAB1_VECTOR_HPP

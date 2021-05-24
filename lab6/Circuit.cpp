@@ -27,7 +27,6 @@ void Circuit::showWhoDidNotFinish() const noexcept {
     }
 }
 
-
 void Circuit::showFinalRanks() const noexcept {
     for(int i = 0; i < numberOfCars; i++)
     {

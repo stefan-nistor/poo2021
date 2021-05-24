@@ -32,6 +32,7 @@ public:
     inline int getDigitsCount   () const noexcept {return strlen(digits);}
     constexpr inline int getBase() const noexcept {return this -> base;}
 
+
     /// being friend methods, we do not have access to "this"
     friend Number operator+     (const Number& a, const Number& b) noexcept;
     friend Number operator-     (const Number& a, const Number& b) noexcept;
@@ -45,7 +46,7 @@ public:
     Number& operator += (const Number& obj) noexcept;
 
     Number& operator --() noexcept;    ///Prefix
-    Number  operator --(int) noexcept; ///Postfix
+    Number&  operator --(int) noexcept; ///Postfix
 
 
     GEN_COMP_OPERATOR (>)

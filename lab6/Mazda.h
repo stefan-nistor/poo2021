@@ -9,15 +9,15 @@
 class Mazda : public Car{
 
 
-    auto fuelCapacity() const  -> float override {
+    [[nodiscard]] auto fuelCapacity() const  -> float override {
         return 55.0f;
     }
 
-    auto fuelConsumption () const  -> float override {
+    [[nodiscard]] auto fuelConsumption () const  -> float override {
             return 0.58f;
     }
 
-    auto averageSpeed (Weather weather) const  -> float override {
+    [[nodiscard]] auto averageSpeed (Weather weather) const  -> float override {
         switch (weather) {
             case Weather::RAIN:     return 86.5f;
             case Weather::SNOW:     return 62.9f;
@@ -26,12 +26,12 @@ class Mazda : public Car{
         return 0;
     }
 
-    auto range() const -> float override{
+    [[nodiscard]] auto range() const -> float override{
         return fuelCapacity() / fuelConsumption();
     }
 
 
-    auto getName() const -> char* override{
+    [[nodiscard]] auto getName() const -> const char* override{
         return "Mazda";
     }
 };

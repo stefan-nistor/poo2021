@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <exception>
 #include <iostream>
-
+#include <initializer_list>
 class MyVector {
 private:
 
@@ -20,8 +20,12 @@ private:
 
 public:
 
+
+
     MyVector() noexcept = default;
     MyVector (MyVector const &) noexcept;
+
+    MyVector (std::initializer_list<int> const& ref) noexcept { for (const auto &item : ref) this->Add(item);}
 
     auto Add    (Value) noexcept -> bool;
     auto Delete (int) noexcept(false) -> bool;
@@ -29,8 +33,15 @@ public:
     auto begin  ()  const noexcept {return *this->_pData[0];}
     auto end    ()    const noexcept {return *this->_pData[this->_size];}
 
-    auto Iterate (int(*(int))) noexcept -> void;
-    auto Filter (bool(*(int))) noexcept -> void;
+    auto Iterate    (int (*)(int)) noexcept -> void;
+    auto Filter     (bool (*f)(int)) noexcept -> void;
+
+    friend std::ostream& operator<< (std::ostream& buf, MyVector const & v) noexcept {
+        for (int i = 0; i < v._size; i++)
+            buf << (*v._pData[i]) << ' ';
+        return buf;
+    }
+
 };
 
 auto MyVector::Add(MyVector::Value value) noexcept -> bool {
@@ -84,12 +95,12 @@ auto MyVector::_resize(int size) noexcept -> void {
     this->_capacity = size;
 }
 
-auto MyVector::Iterate(int (*f(int))) noexcept -> void {
+auto MyVector::Iterate(int (*f)(int)) noexcept -> void {
     for(int i = 0; i < this->_size; i++)
-        this->_pData[i] = f(*this->_pData[i]);
+        *this->_pData[i] = f(*this->_pData[i]);
 }
 
-auto MyVector::Filter(bool(*f(int))) noexcept -> void {
+auto MyVector::Filter(bool (*f)(int)) noexcept -> void {
     for( int i = 0; i < this->_size; i++){
         if(f(*this->_pData[i]))
             Delete(i);
@@ -98,6 +109,7 @@ auto MyVector::Filter(bool(*f(int))) noexcept -> void {
 
 #include <vector>
 using namespace std;
+MyVector v = {1, 4 ,6, 12, 243, 632, 12 ,432 ,53, 12};
 int main(){
 
     vector<string> arr;
@@ -112,8 +124,10 @@ int main(){
     auto f1 = [](int x) noexcept -> bool {return x == 12;};
     auto f2 = [](int x) noexcept -> int  {return x + 12;};
 
-    v.Filter(f1());
-    v.Iterate(f2());
+    ::v.Filter(f1);
+    ::v.Iterate(f2);
+
+    std::cout << ::v;
 
     return 0;
 }
